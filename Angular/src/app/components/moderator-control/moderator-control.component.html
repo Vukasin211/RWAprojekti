@@ -1,0 +1,25 @@
+<div class = "korisnikListContainer" *ngIf = "moderatori$ as moderatori">
+
+    <div class = "mainLabel">
+        <h1>Uredjenje moderatora</h1>
+    </div>
+
+    <div class="moderator" *ngFor = "let moderator of moderatori | async; let i=index">
+        <div class = "info">
+
+            <div class = "usernameDiv">
+                <a class = "infoLabel">Username: </a>
+                <div class = "infoData">{{moderator.username}}</div>
+            </div>
+            
+            <div class = "passwordDiv">
+                <a class = "infoLabel">Password: </a>
+                <div class = "infoData">{{moderator.password}}</div>
+            </div>
+    
+        </div>
+        
+        <div class = "dugmici" (click) = "delete(moderator)">Izbrisi</div>
+    </div>
+
+</div>

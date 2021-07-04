@@ -1,0 +1,26 @@
+<div class="regContainer" *ngIf = "korisnici$ | async as korisnici">
+
+    <div class = "regDialog">
+
+        <div class="regLabelaDiv">
+            <h1>Logovanje</h1>
+        </div>
+
+        <div class = "usernameDiv">
+            <a class = "labeleUnosa">Username: </a>
+            <input class="usernameUnos">
+        </div>
+        
+        <div class = "passwordDiv">
+            <a class = "labeleUnosa">Password: </a>
+            <input class="passwordUnos" ng-model="params.password" type="password">
+        </div>
+
+        <div class = "dugmiciDiv">
+            <div class = "dugmici" (click) = "logIn(korisnici)" routerLink = "/">Uloguj se</div>
+            <div class = "dugmici" routerLink = "/register" >Registracija</div>
+        </div>
+
+    </div>
+    
+</div>

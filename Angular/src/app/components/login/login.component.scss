@@ -1,0 +1,93 @@
+$primary: rgb(255, 128,0);
+
+
+div.regContainer
+{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+div.regDialog
+{
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+
+    width: 337px;
+    height: 275px;
+    //min-width: 70%;
+    display: flex;
+    flex-direction: column;
+
+    margin: 30px;
+    padding: 10px;
+}
+
+.regLabelaDiv
+{
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+    border: 2px solid black;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 1em;
+    height: 2em;
+}
+
+.usernameDiv, .passwordDiv, .emailDiv, .mobBrDiv, .prezimeDiv, .imeDiv
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 10px;
+}
+
+.usernameUnos, .passwordUnos, .emailUnos, .mobBrUnos, .imeUnos, .prezimeUnos
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+.labeleUnosa
+{
+    font-size: 22px;
+}
+
+.dugmiciDiv
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.dugmici
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    border: 1px solid black;
+    margin: 10px;
+    min-width: 40%;
+    height: 50px;
+    font-size: 16px;
+
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+    border: 2px solid black;
+
+    &:hover
+    {
+        cursor: pointer;
+    }
+}

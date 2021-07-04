@@ -1,0 +1,13 @@
+
+<div *ngIf = "restoran" (click) = "clicked()" class = "Dragan">
+    <a class= "naziv">{{restoran.naziv}}</a>
+        <div class= "rest">
+            <img class= "slika" *ngIf = "restoran.galerijas[0]" src="{{restoran.galerijas[0].url}}">
+            <div class="info">
+                <a class= "adresa">Adresa: {{restoran.adresa}}</a>
+                <a class= "telefon">Telefon: {{restoran.telefon}} </a>
+                <a class= "ocena">Ocena: <fa-icon [icon]="faStar"></fa-icon>{{restoran.ocena}}</a>
+                <fa-icon [icon]="faCoffe"></fa-icon>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="moderator" *ngIf = "moderatori">
+    <div *ngFor = "let moderator of moderatori; let i=index">
+        <div class = "usernameDiv">
+            <a class = "infoLabel">Username: </a>
+            <div class = "infoData">{{moderator.username}}</div>
+        </div>
+        
+        <div class = "passwordDiv">
+            <a class = "infoLabel">Password: </a>
+            <div class = "infoData">{{moderator.password}}</div>
+        </div>
+
+        <div class = "passwordDiv">
+            <a class = "infoLabel">Naziv lokala: </a>
+            <!--<div class = "infoData">{{moderator.restoran.naziv}}</div>-->
+        </div>
+        <div class = "dugmici" (click) = "delete(i)">Izbrisi</div>
+    </div>
+</div>

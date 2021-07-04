@@ -1,0 +1,90 @@
+<div class="restoranDetaljniPrikaz" *ngIf = "restoran$ | async as restoran">
+
+    <div class = "naziv">
+        <div>
+            <h1 class = "ime">{{restoran.naziv}}: {{restoran.adresa}}, {{zauzeto}}/{{kapacitet}}</h1>
+        </div>
+        <div class="ocenaZvezdica">
+            <a class = "ocenaLab">Ocena: {{restoran.ocena}}</a>
+            <fa-icon [icon]="faStar"></fa-icon>
+        </div>
+    </div>
+   
+    <div class = "info">
+
+        <div class="oceniDiv" *ngIf = "korisnik">
+            <div>Oceni: </div>
+            <div>
+                <fa-icon [icon]="faStar" class="zvezdica" (click) = "oceni(1)"></fa-icon>
+                <fa-icon [icon]="faStar" class="zvezdica" (click) = "oceni(2)"></fa-icon>
+                <fa-icon [icon]="faStar" class="zvezdica" (click) = "oceni(3)"></fa-icon>
+                <fa-icon [icon]="faStar" class="zvezdica" (click) = "oceni(4)"></fa-icon>
+                <fa-icon [icon]="faStar" class="zvezdica" (click) = "oceni(5)"></fa-icon>
+            </div>
+        </div>
+        
+   
+            <div class="slike">
+                <div *ngFor = "let slika of restoran.galerijas" class = "slikaDiv">
+                    <img *ngIf = "slika.url" class= "slika" src="{{slika.url}}" (click) = "otvoriSliku(slika.url)">
+                </div>
+            </div>
+        
+        <div class = "lokacijaDogadjaj">
+            <div class="mapaDiv">
+                <img class = "lokacija" src="{{restoran.mapaLokacija}}" (click) = "otvoriMapu(restoran.mapaLokacija)">
+            </div>
+            <div class = "dogadjajDiv" *ngIf = "eventFlag">
+                <div class = "dogadjaj">{{restoran.dogadjaj}}</div>
+            </div>
+        </div>
+
+   </div>
+
+   <div *ngIf = "eventFlag">
+    <div class = "rezervisanjeStolova" *ngIf = "korisnik" >
+
+        <div class = "stoZa2">
+            <div (click) = "rezervisiSto(2, restoran.stos)" class="rezervisi">
+                <div class = "stoLabel">Sto za 2</div>
+                <div class = "stoLabel">Slobodno: {{stoZa2}}</div>
+            </div>
+            <div (click) = "otkaziRezervaciju(2, restoran.stos)" class="rezervisi">
+                <div class = "stoLabel" >Otkazi rezervaciju</div>
+            </div>
+        </div>
+
+        <div class = "stoZa4">
+            <div (click) = "rezervisiSto(4, restoran.stos)" class="rezervisi">
+                <div class = "stoLabel">Sto za 4</div>
+                <div class = "stoLabel">Slobodno: {{stoZa4}}</div>
+            </div>
+            <div (click) = "otkaziRezervaciju(4, restoran.stos)" class="rezervisi">
+                <div class = "stoLabel" >Otkazi rezervaciju</div>
+            </div>
+        </div>
+
+        <div class = "stoZa6">
+            <div (click) = "rezervisiSto(6, restoran.stos)" class="rezervisi">
+                <div class = "stoLabel">Sto za 6</div>
+                <div class = "stoLabel">Slobodno: {{stoZa6}}</div>
+            </div>
+            <div (click) = "otkaziRezervaciju(6, restoran.stos)" class="rezervisi">
+                <div class = "stoLabel" >Otkazi rezervaciju</div>
+            </div>
+        </div>
+
+        <div class = "stoZa10">
+            <div (click) = "rezervisiSto(10, restoran.stos)" class="rezervisi">
+                <div class = "stoLabel">Separe</div>
+                <div class = "stoLabel">Slobodno: {{separe}}</div>
+            </div>
+            <div (click) = "otkaziRezervaciju(10, restoran.stos)" class="rezervisi">
+                <div class = "stoLabel" >Otkazi rezervaciju</div>
+            </div>
+        </div>
+          
+        </div>
+   </div>
+   
+</div>

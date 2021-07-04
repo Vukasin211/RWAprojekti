@@ -1,0 +1,178 @@
+{
+  "lokali": [
+    {
+      "id": "100",
+      "naziv": "Tramvaj",
+      "ocena": 4.5,
+      "galerija": [
+        "http://www.kudanaklopu.com/test_knk/wp-content/uploads/2014/10/40221-nis-poslasticarnica-Tramvaj.jpg",
+        "http://www.kudanaklopu.com/test_knk/wp-content/uploads/2014/10/40222-nis-poslasticarnica-Tramvaj.jpg",
+        "https://cf.bstatic.com/images/hotel/max1024x768/114/114435774.jpg",
+        "https://media-cdn.tripadvisor.com/media/photo-s/06/e7/64/52/tramvaj.jpg"
+      ],
+      "adresa": "Obrnoviceva 20",
+      "telefon": "060 5796101",
+      "dogadjaj": "Nzm evo kao neki dogadjaj nesto ne znam sta odakle znam",
+      "mapaLokacijaSlika": "https://www.navidiku.rs/firme/googlemape/ruzveltova-2-beograd.png"
+    },
+    {
+      "id": "123",
+      "naziv": "Square Cafe",
+      "ocena": 4.5,
+      "adresa": "Park Svetog Save",
+      "telefon": "065 5495979",
+      "galerija": [
+        "https://img.theculturetrip.com/768x512/smart/wp-content/uploads/2018/03/square-cafe.jpg"
+      ]
+    },
+    {
+      "id": "312312",
+      "naziv": "Pandora",
+      "ocena": 4.5,
+      "adresa": "Lole Ribara 2",
+      "telefon": "018 521953",
+      "galerija": [
+        "http://www.kudanaklopu.com/test_knk/wp-content/uploads/2016/03/pandora.jpg"
+      ]
+    },
+    {
+      "id": "1234",
+      "naziv": "Tesla",
+      "ocena": 4.4,
+      "adresa": "Kopitareva",
+      "telefon": "018 517194",
+      "galerija": [
+        "https://10619-2.s.cdn12.com/rests/original/407_52828879.jpg"
+      ]
+    },
+    {
+      "id": "10",
+      "naziv": "DraganovLokal",
+      "adresa": "asd;lkasd",
+      "ocena": 0,
+      "galerija": [],
+      "slikaBr": 0,
+      "telefon": "",
+      "dogadjaj": "",
+      "mapaLokacija": "",
+      "mapaLokacijaSlika": "",
+      "moderatori": [],
+      "brStolova": 0,
+      "kapacitet": 0,
+      "stolovi": []
+    },
+    {
+      "id": "YhnO3Yz",
+      "naziv": "NekiLokal",
+      "adresa": "LokalAdresa",
+      "ocena": 0,
+      "galerija": [],
+      "slikaBr": 0,
+      "telefon": "",
+      "dogadjaj": "",
+      "mapaLokacija": "",
+      "mapaLokacijaSlika": "",
+      "moderatori": [],
+      "brStolova": 0,
+      "kapacitet": 0,
+      "stolovi": []
+    },
+    {
+      "id": "N72H5CS",
+      "naziv": "NekiLokal2",
+      "adresa": "LokalAdresa",
+      "ocena": 0,
+      "galerija": [],
+      "slikaBr": 0,
+      "telefon": "",
+      "dogadjaj": "",
+      "mapaLokacija": "",
+      "mapaLokacijaSlika": "",
+      "moderatori": [],
+      "brStolova": 0,
+      "kapacitet": 0,
+      "stolovi": []
+    },
+    {
+      "id": "qCO6Tsg",
+      "naziv": "NekiLokal3",
+      "adresa": "LokalAdresa",
+      "ocena": 0,
+      "galerija": [],
+      "slikaBr": 0,
+      "telefon": "",
+      "dogadjaj": "",
+      "mapaLokacija": "",
+      "mapaLokacijaSlika": "",
+      "moderatori": [],
+      "brStolova": 0,
+      "kapacitet": 0,
+      "stolovi": []
+    },
+    {
+      "id": "k48VzeY",
+      "naziv": "MatejinLoka",
+      "adresa": "Matejevac",
+      "ocena": 0,
+      "galerija": [],
+      "slikaBr": 0,
+      "telefon": "",
+      "dogadjaj": "",
+      "mapaLokacija": "",
+      "mapaLokacijaSlika": "",
+      "moderatori": [],
+      "brStolova": 0,
+      "kapacitet": 0,
+      "stolovi": []
+    },
+    {
+      "id": "EOFhS5Z",
+      "naziv": "asdfasdf",
+      "adresa": "asdfasdf",
+      "ocena": 0,
+      "galerija": [],
+      "slikaBr": 0,
+      "telefon": "",
+      "dogadjaj": "",
+      "mapaLokacija": "",
+      "mapaLokacijaSlika": "",
+      "moderatori": [],
+      "brStolova": 0,
+      "kapacitet": 0,
+      "stolovi": []
+    },
+    {
+      "id": "BGDv59z",
+      "naziv": "asdfasdf",
+      "adresa": "asdfasdf",
+      "ocena": 0,
+      "galerija": [],
+      "slikaBr": 0,
+      "telefon": "",
+      "dogadjaj": "",
+      "mapaLokacija": "",
+      "mapaLokacijaSlika": "",
+      "moderatori": [],
+      "brStolova": 0,
+      "kapacitet": 0,
+      "stolovi": []
+    },
+    {
+      "id": "_XnJeQn",
+      "naziv": "Dragan",
+      "adresa": "Dragan",
+      "ocena": 0,
+      "galerija": [],
+      "slikaBr": 0,
+      "telefon": "",
+      "dogadjaj": "",
+      "mapaLokacija": "",
+      "mapaLokacijaSlika": "",
+      "moderatori": [],
+      "brStolova": 0,
+      "kapacitet": 0,
+      "stolovi": []
+    }
+  ],
+  "modertori": []
+}

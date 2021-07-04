@@ -1,0 +1,19 @@
+
+<header>
+    <a class="logo" href="#" routerLink = "/" >GETout</a>
+    <nav>
+        <ul>
+            <li><a href="#" routerLink = "/">Pocetna</a></li>
+            <li><a href="#" routerLink = "/{{profilRoute}}" class="registerDugme" >{{profilNav}}</a></li>
+            <li><a *ngIf = "loginButton" href="#" routerLink = "/login" class = "loginDugme">Uloguj se</a></li>
+            <li ><a *ngIf = "izlogujButton" href="#" routerLink = "/" (click) = "izloguj()" class = "loginDugme">IZLOGUJ se</a></li>        
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <div class="container">
+        <router-outlet></router-outlet>
+    </div>
+</body>
+

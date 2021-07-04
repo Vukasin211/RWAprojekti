@@ -1,0 +1,83 @@
+<div class="restoranEditPrikaz" *ngIf = "restoran$ | async as restoran">
+
+    <div class = "basicInfoDiv">
+        <a class="nazivLab">Naziv: {{restoran.naziv}}</a>
+        <a class ="adresaLab">Adresa: {{restoran.adresa}}</a>
+        <a class ="ocenaLab">Ocena: {{restoran.ocena}}<fa-icon [icon]="faStar"></fa-icon></a>
+        <a class ="ocenaLab">Kapacitet: {{restoran.ukupanKapacitet}}</a>
+    </div>
+
+    <div class = "editDiv">
+
+        <div class = "imageControl">
+            <div class="slikeDiv">
+            
+                <div class = "slikeAddControl">
+                    <a class="urlLabe">Uneti URL slike: </a>
+                    <input class="slikaUnos">
+                    <div (click) = "dodajSliku(restoran, restoran.galerijas)" class = "dodajButton">DODAJ</div>
+                </div>
+        
+                <div class = "slikeView" *ngFor = "let slika of restoran.galerijas; let i=index">
+        
+                    <div class="slikica" >
+                        <img class= "slika" src="{{slika.url}}" (click) = "otvoriSliku(slika, restoran)">
+                        <div (click) = "deleteImage(slika, restoran)" class = "deleteImageButton">
+                            Delete
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+
+        <div class="mapaAndEventAndSto">
+            <div class="mapaEditControl">
+
+                <div class = "mapaLokacijaSlika">
+                    <img class= "mapaLokacijaSlika" src="{{restoran.mapaLokacija}}" (click) = "otvoriMapu(restoran.mapaLokacija)">
+                </div>
+    
+                <div class="mapaEditInput">
+                    <a class="urlLabe">Uneti URL mape: </a>
+                    <input class="mapUnos">
+                    <div (click) = "dodajMapu(restoran)" class = "dodajMapu">DODAJ</div>
+                </div>
+    
+                
+            </div>
+    
+            <div class = "dogadjajEdit">
+
+                <a class="dogadjajContent">Uneti dogadjaj: </a>
+                <input class="dogadjajUnos">
+                <div class = "dodajDogadjaj" (click) = "izmeniDogadjaj(restoran)">Sacuvaj dogadjaj</div>
+
+            </div>
+
+            <div class = "stolovi">
+
+                <div class = "dodavanjeStola">
+                    <div>Dodavanje stola:</div>
+                    <div (click) = "dodajSto(2, restoran, restoran.stos)" class = "stoAddBtton">Dodaj za 2</div>
+                    <div (click) = "dodajSto(4, restoran, restoran.stos)" class = "stoAddBtton">Dodaj za 4</div>
+                    <div (click) = "dodajSto(6, restoran, restoran.stos)" class = "stoAddBtton">Dodaj za 6</div>
+                    <div (click) = "dodajSto(10, restoran, restoran.stos)" class = "stoAddBtton">Dodaj separe</div>
+                </div>
+        
+           </div>
+
+        </div>
+
+        <div class = "stoloviDisplayDelete">
+            <div *ngFor = "let sto of restoran.stos; let i=index" >
+                <div class="stoControl" *ngIf = "imenaKorisnikaRezervacije">
+                    <div class = "stoId">ID: {{sto.id}}, za {{sto.brojOsoba}}, rezervisao {{sto.username}}</div>
+                    <div class = "stoDeleteButton" (click) = "deleteSto(restoran, sto)">Obrisi</div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+</div>

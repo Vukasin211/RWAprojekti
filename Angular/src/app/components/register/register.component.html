@@ -1,0 +1,46 @@
+<div class="regContainer" >
+
+    <div class = "regDialog">
+
+        <div class="regLabelaDiv">
+            <h1>Register</h1>
+        </div>
+        
+        <div class = "imeDiv">
+            <a class = "labeleUnosa">Ime: </a>
+            <input class="imeUnos">
+        </div>
+        
+        <div class = "prezimeDiv">
+            <a class = "labeleUnosa">Prezime: </a>
+            <input class="prezimeUnos">
+        </div>
+
+        <div class = "usernameDiv">
+            <a class = "labeleUnosa">Username: </a>
+            <input class="usernameUnos">
+        </div>
+        
+        <div class = "passwordDiv">
+            <a class = "labeleUnosa">Password: </a>
+            <input class="passwordUnos">
+        </div>
+
+        <div class = "emailDiv">
+            <a class = "labeleUnosa">Email: </a>
+            <input class="emailUnos">
+        </div>
+
+        <div class = "mobBrDiv">
+            <a class = "labeleUnosa">telefon: </a>
+            <input class="mobBrUnos" > 
+        </div>
+
+        <div class = "dugmiciDiv" *ngIf = "korisnici$ | async as korisnici">
+            <div class = "dugmici" routerLink = "/" (click) = "registracija(korisnici)">Registruj se</div>
+            <div href="#" routerLink = "/login" class = "dugmici">Uloguj se</div>
+        </div>
+
+    </div>
+    
+</div>

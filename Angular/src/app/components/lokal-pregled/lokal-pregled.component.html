@@ -1,0 +1,40 @@
+<div class = "lokalAdminContainer">
+
+    <div class = "mainLabel">
+        <h1>Uredjenje lokala</h1>
+    </div>
+
+    <div class = "dodajDialog">
+        <div class="dodajDialogLabel">
+            <a>Dodaj lokal</a>
+        </div>
+
+        <div class = "usernameDiv">
+            <a class = "labeleUnosa">Ime lokala: </a>
+            <input class="ImeUnos">
+        </div>
+        
+        <div class = "passwordDiv">
+            <a class = "labeleUnosa">Adresa: </a>
+            <input class="adresaUnos">
+        </div>
+
+        <div class = "dugmiciDiv">
+            <div type="submit" class = "dugme" (click) = "dodajLokal()" (keyup.enter) = "dodajLokal()">Dodaj</div>
+        </div>
+    </div>
+
+    <div *ngIf = "restorani$ | async as restorani" class="restorani">
+    
+        <div *ngFor = "let restoran of restorani; let i=index "  class="restoran" >
+    
+            <app-restoran [restoran] = "restoran" class="rest" href = "#" routerLink = "/restoran" (click)="setTrenutni(restoran)"></app-restoran>
+    
+           <div class="dugmici">
+                <div (click) = "delete(restoran)" class="button">Obrisi</div>
+                <div (click) = "setTrenutni(restoran)" class="button" routerLink = "/edit">Izmeni</div>
+            </div>
+            
+        </div>
+    </div>
+</div>

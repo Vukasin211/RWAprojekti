@@ -1,0 +1,49 @@
+<div class = "korisnikListContainer" *ngIf = "korisnici$ | async as korisnici">
+
+    <div class = "mainLabel">
+        <h1>Uredjenje krisnika</h1>
+    </div>
+
+    <div class="korisnik" *ngFor = "let korisnik of korisnici; let i=index">
+        <div class = "korisnikInfo">
+            <div class = "info">
+                <div class = "imeDiv">
+                    <a class = "infoLabel">Ime: </a>
+                    <div class = "infoData">{{korisnik.ime}}</div>
+                </div>
+                
+                <div class = "prezimeDiv">
+                    <a class = "infoLabel">Prezime: </a>
+                    <div class = "infoData">{{korisnik.prezime}}</div>
+                </div>
+        
+                <div class = "usernameDiv">
+                    <a class = "infoLabel">Username: </a>
+                    <div class = "infoData">{{korisnik.username}}</div>
+                </div>
+                
+                <div class = "passwordDiv">
+                    <a class = "infoLabel">Password: </a>
+                    <div class = "infoData">{{korisnik.password}}</div>
+                </div>
+        
+                <div class = "emailDiv">
+                    <a class = "infoLabel">Email: </a>
+                    <div class = "infoData">{{korisnik.email}}</div>
+                </div>
+        
+                <div class = "mobBrDiv">
+                    <a class = "infoLabel">telefon: </a>
+                    <div class = "infoData">{{korisnik.brTelefona}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="unapredjenje" >
+            <div class = "dugmici" (click) = "unapredi(korisnik)">Unapredi</div>
+            <div class = "dugmici" (click) = "delete(korisnik)">Izbrisi</div>
+        </div>
+        
+    </div>
+        
+</div>

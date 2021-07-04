@@ -1,0 +1,46 @@
+$primary: rgb(255, 128,0);
+
+img.slika
+{
+    margin-top: 0;
+    display: flex;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border-radius: 10px;
+}
+div.restoran
+{
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary;
+    box-shadow: 5px 5px 10px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: $primary;
+    &:hover{
+        background: darken($primary, $amount: 5%);
+    }
+}
+div.rest
+{
+    display: flex;
+    flex-direction: row;
+}
+div.info
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+div.restorani
+{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    float: right;
+    opacity: 0.9;
+}

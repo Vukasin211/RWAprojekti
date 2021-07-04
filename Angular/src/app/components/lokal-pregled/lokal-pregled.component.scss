@@ -1,0 +1,152 @@
+$primary: rgb(255, 128,0);
+
+.lokalAdminContainer
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainLabel
+{
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+    border: 2px solid black;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    width: 337px;
+    margin: 10px;
+}
+
+.dodajDialog
+{
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+    border: 2px solid black;
+    width: 337px;
+    padding: 10px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+.dugmiciDiv
+{
+    width: 300px;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dugme
+{
+    margin:10px;
+    height: 70px;
+    width: 50%;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 10px;
+    font-size: 24px;
+
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+    border: 2px solid black;
+
+    &:hover
+    {
+        cursor: pointer;
+        background: darken($primary, $amount: 20%);
+        font-weight: bolder;
+    }
+}
+
+.restorani
+{
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    opacity: 0.9;
+}
+
+.restoran
+{
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $primary;
+    box-shadow: 5px 5px 10px;
+    margin: 5px;
+    border-radius: 20px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: $primary;
+}
+
+.rest
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &:hover{
+        background: darken($primary, $amount: 5%);
+    }
+}
+
+.dugmici
+{
+    display: flex;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button
+{
+    margin:10px;
+    height: 100px;
+    width: 100px;
+    font-size: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin: 10px;
+    font-size: 24px;
+
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+    border: 2px solid black;
+
+    &:hover
+    {
+        cursor: pointer;
+        background: darken($primary, $amount: 20%);
+        font-weight: bolder;
+    }
+}

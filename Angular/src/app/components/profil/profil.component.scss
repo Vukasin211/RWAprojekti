@@ -1,0 +1,89 @@
+
+$primary: rgb(255, 128,0);
+
+.profilContainer
+{
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.profileDiv
+{
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+
+    width: 337px;
+    height: 575px;
+    //min-width: 70%;
+    display: flex;
+    flex-direction: column;
+
+    margin: 30px;
+    padding: 10px;
+}
+
+.mainLabel
+{
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+    border: 2px solid black;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 1em;
+    height: 2em;
+}
+.unos
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.usernameDiv, .passwordDiv, .emailDiv, .mobBrDiv, .prezimeDiv, .imeDiv
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 10px;
+    width: 70%;
+    font-size: 24px;
+}
+
+.usernameUnos, .passwordUnos, .emailUnos, .mobBrUnos, .imeUnos, .prezimeUnos
+{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+}
+
+.saveChangeButton
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    border: 1px solid black;
+    margin: 10px;
+    min-width: 40%;
+    height: 50px;
+    font-size: 16px;
+
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px;
+    background-color: $primary;
+    border: 2px solid black;
+
+    &:hover
+    {
+        cursor: pointer;
+    }
+}

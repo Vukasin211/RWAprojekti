@@ -1,0 +1,15 @@
+<div class = "mainDiv">
+    <div *ngIf="restorani" class="restorani">
+    
+        <div *ngFor = "let restoran of restorani | async; let i=index " class="restoran" href = "#" routerLink = "/restoran">
+    
+            <app-restoran [restoran] = "restoran" (onClick) = "selectedRestoran($event)"  ></app-restoran>
+    
+        </div>
+    </div>
+</div>
+
+
+
+
+
