@@ -1,0 +1,26 @@
+.mainBoardContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tableBoard
+{
+    padding: 10px;
+    border: 1px solid black;
+}
+
+.tableBoardCell
+{
+    width: 150px;
+    height: 210px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.cardImg
+{
+    width: 150px;
+    height: 200px;
+}
