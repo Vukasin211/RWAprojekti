@@ -24,6 +24,7 @@
     "date-fns": "^2.22.1",
     "express": "^4.17.1",
     "json-server": "^0.16.3",
-    "rxjs": "^7.1.0"
+    "rxjs": "^7.1.0",
+    "socket.io-client": "^4.1.2"
   }
 }
