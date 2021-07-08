@@ -20,17 +20,25 @@
     </style>
   </head>
   <body>
-    <div class="search">
-      <input class="searchInput" />
-      <select class="comboBoxInput" optionlist ”>
-        <option>Attack</option>
-        <option>Deffense</option>
-        <option>Title</option>
-      </select>
+    <div class = "mainListContainer">
+      <div class="search">
+        <span>Search: </span>
+        <input class="searchInput" />
+        <select class="comboBoxInput" optionlist ”>
+          <option>Title</option>
+          <option>Attack</option>
+          <option>Deffense</option>
+          <option>Stars</option>
+        </select>
+      </div>
+      <div class="mainCardDiv">
+        <ul id="output">
+          <div id="cardDiv"></div>
+        </ul>
+        <div id="cardDetail"></div>
+      </div>
     </div>
-    <ul id="output">
-      <div id="cardDiv"></div>
-    </ul>
+    
 
     <script src="./dist/bundle.js"></script>
   </body>

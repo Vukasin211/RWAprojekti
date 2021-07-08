@@ -46,13 +46,20 @@ function addItem(card: Card) {
   cardInfoDiv.appendChild(labelLvl);
 
   let labelDesc = document.createElement("label");
-  labelDesc.innerHTML = "Description: " + card.description;
+  labelDesc.innerHTML = "Attribute: " + card.attribute;
   cardInfoDiv.appendChild(labelDesc);
 
   let labelAttackDeffens = document.createElement("label");
   labelAttackDeffens.innerHTML = `ATK: ${card.attack} DEF: ${card.deffense}`;
   cardInfoDiv.appendChild(labelAttackDeffens);
-  //fromEvent(cardDiv, "click").subscribe((x) => alert(card.title));
+}
+
+function showDetailedCardView(card: Card)
+{
+  console.log(card)
+  let detailCardDiv = document.createElement("img");
+  detailCardDiv.src = card.imgPath;
+  document.getElementById("cardDetail").appendChild(detailCardDiv);
 }
 
 function getAllCardsObservableFromJsonServer(
@@ -75,7 +82,6 @@ function getAllCardsObservableFromJsonServer(
       }
     })
     .catch((err) => console.log(`Error `, err));
-  //api
   return from(fetchVar);
 }
 
@@ -98,7 +104,6 @@ const keyboadInputObservable = fromEvent(
 ).pipe(
   debounceTime(1000),
   map((ev: InputEvent) => (<HTMLInputElement>ev.target).value)
-  //filter((text) => text.length >= 3)
 );
 
 function comboBoxValue() {

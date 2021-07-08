@@ -3,62 +3,123 @@
     {
       "id": 1,
       "title": "Celtic Guardian",
+      "attribute": "Earth",
       "stars": 4,
       "description": "An elf who learned to wield a sword, he baffles enemies with lightning-swift",
       "attack": 1400,
       "deffense": 1200,
       "imgPath": "../resorces/CelticGuardian.png",
-      "effect": ["attack"]
+      "type": "Normal"
     },
     {
       "id": 2,
       "title": "Dark Magician",
+      "attribute": "Dark",
       "stars": 7,
       "description": "The ultimate wizard in terms of attack and defense.",
       "attack": 2500,
       "deffense": 2100,
       "imgPath": "./resorces/DarkMagician.png",
-      "effect": ["attack"]
+      "type": "Normal"
     },
     {
       "id": 3,
       "title": "Blue-Eyes White Dragon",
+      "attribute": "Light",
       "stars": 8,
       "description": "This legendary dragon is a powerful engine of destruction. Virtually invincible, very few have faced this awesome creature and lived to tell the tale.",
       "attack": 3000,
       "deffense": 2500,
       "imgPath": "./resorces/BlueEyesWhiteDragon.png",
-      "effect": ["attack"]
+      "type": "Normal"
     },
     {
       "id": 4,
       "title": "Red-Eyes Black Dragon",
+      "attribute": "Light",
       "stars": 7,
       "description": "Its attack power is of the highest level possible. An extremely rare card!",
       "attack": 2400,
       "deffense": 2000,
       "imgPath": "./resorces/RedEyesBlackDragon.png",
-      "effect": ["attack"]
+      "type": "Normal"
     },
     {
       "id": 5,
       "title": "Summoned Skull",
+      "attribute": "Dark",
       "stars": 6,
       "description": "A fiend with dark powers for confusing the enemy. Among the Fiend-Type monsters, this monster boasts considerable force.",
       "attack": 2500,
       "deffense": 1200,
       "imgPath": "./resorces/SummonedSkull.jpg",
-      "effect": ["attack"]
+      "type": "Normal"
     },
     {
       "id": 6,
       "title": "Curse of Dragon",
+      "attribute": "Dark",
       "stars": 5,
       "description": "A wicked dragon that taps into dark forces to execute a powerful attack.",
       "attack": 2000,
       "deffense": 1500,
       "imgPath": "./resorces/CurseofDragon.png",
-      "effect": ["attack"]
+      "type": "Normal"
+    },
+    {
+      "id": 7,
+      "title": "Giant Soldier of Stone",
+      "attribute": "Earth",
+      "stars": 3,
+      "description": "A giant warrior made of stone. A punch from this creature has earth-shaking results.",
+      "attack": 1300,
+      "deffense": 2000,
+      "imgPath": "./resorces/GiantSoldierofStone.jpg",
+      "type": "Normal"
+    },
+    {
+      "id": 8,
+      "title": "Mystical Elf",
+      "attribute": "Light",
+      "stars": 4,
+      "description": "You can transfer this card's ATK to 1 other monster you control. This effect can only be used once while this card is face-up on the field.",
+      "attack": 800,
+      "deffense": 2000,
+      "imgPath": "./resorces/MysticalElf.jpg",
+      "type": "Effect"
+    },
+    {
+      "id": 8,
+      "title": "Dark Magician Girl",
+      "attribute": "Dark",
+      "stars": 6,
+      "description": "This card gains 300 ATK for every Dark Magician or Magician of Black Chaos in either player's Graveyard.",
+      "attack": 2000,
+      "deffense": 1700,
+      "imgPath": "./resorces/DarkMagicianGirl.jpg",
+      "type": "Effect"
+    },
+    {
+      "id": 9,
+      "title": "Chimera the Flying Mythical Beast",
+      "attribute": "Dark",
+      "stars": 6,
+      "description": "Gazelle the King of Mythical + Beasts Berfomet. When this card is destroyed, you can select and Special Summon either Berfomet or Gazelle the King of Mythical Beasts from your Graveyard.",
+      "attack": 2100,
+      "deffense": 1800,
+      "imgPath": "./resorces/ChimeratheFlyingMythicalBeast.png",
+      "type": "Fusion"
+    },
+    {
+      "id": 10,
+      "title": "Gaia the Dragon Champion",
+      "attribute": "Dark",
+      "stars": 7,
+      "description": "Gaia The Fierce Knight + Curse of Dragon",
+      "attack": 2600,
+      "deffense": 2100,
+      "imgPath": "./resorces/GaiatheDragonChampion.png",
+      "type": "Fusion"
     }
   ]
 }
