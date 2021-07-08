@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <link rel="stylesheet" href="style.css" />
 
     <style>
-        body { font-family: 'Arial'; background: #ececec; }
-        ul { list-style-type: none; padding: 20px; }
-        li { padding: 20px; background: white; margin-bottom: 5px; }
+      body {
+        font-family: "Arial";
+        background: #ececec;
+      }
+      ul {
+        list-style-type: none;
+        padding: 20px;
+      }
+      li {
+        padding: 20px;
+        background: white;
+        margin-bottom: 5px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="search">
-        <input class="searchInput">
-        <button class = "searchButton">Search</button>
+      <input class="searchInput" />
+      <select class="comboBoxInput" optionlist ”>
+        <option>Attack</option>
+        <option>Deffense</option>
+        <option>Title</option>
+      </select>
     </div>
     <ul id="output">
-        <div id="cardDiv"></div>
+      <div id="cardDiv"></div>
     </ul>
 
     <script src="./dist/bundle.js"></script>
-</body>
+  </body>
 </html>

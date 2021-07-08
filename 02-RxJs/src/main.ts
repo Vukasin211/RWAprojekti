@@ -1,9 +1,18 @@
 import { title } from "process";
-import { from, fromEvent, interval, Observable, Subject } from "rxjs";
+import {
+  combineLatest,
+  from,
+  fromEvent,
+  interval,
+  Observable,
+  Subject,
+  zip,
+} from "rxjs";
 import {
   debounceTime,
   filter,
   map,
+  repeat,
   switchMap,
   take,
   takeUntil,
@@ -47,13 +56,15 @@ function addItem(card: Card) {
 }
 
 function getAllCardsObservableFromJsonServer(
-  searched: string
+  searched: string,
+  type: string
 ): Observable<Card[]> {
+  type = type.toLowerCase();
   if (searched === "") {
     var fetchApi = fetch(API_URL + "cards");
   } //?title=Celtic%20Guardian
   else {
-    var fetchApi = fetch(API_URL + "cards" + "?title=" + searched);
+    var fetchApi = fetch(API_URL + "cards" + `?${type}=` + searched);
   }
   var fetchVar = fetchApi
     .then((response) => {
@@ -68,42 +79,63 @@ function getAllCardsObservableFromJsonServer(
   return from(fetchVar);
 }
 
-const cardGetSubscription = getAllCardsObservableFromJsonServer("").subscribe(
-  (x) => {
-    x.forEach((el, index) => {
-      addItem(el);
-    });
-  }
-);
+const cardGetSubscription = getAllCardsObservableFromJsonServer(
+  "",
+  ""
+).subscribe((x) => {
+  x.forEach((el, index) => {
+    addItem(el);
+  });
+});
 
 function clearCardDiv() {
   document.getElementById("output").innerHTML = "";
 }
 
-keyboardInput();
-searchButtonPressed();
+const keyboadInputObservable = fromEvent(
+  document.getElementsByClassName("searchInput"),
+  "input"
+).pipe(
+  debounceTime(1000),
+  map((ev: InputEvent) => (<HTMLInputElement>ev.target).value)
+  //filter((text) => text.length >= 3)
+);
 
-function keyboardInput() {
-  fromEvent(document.getElementsByClassName("searchInput"), "input")
-    .pipe(
-      debounceTime(1000),
-      map((ev: InputEvent) => (<HTMLInputElement>ev.target).value),
-      filter((text) => text.length >= 3),
-      switchMap((title) => getAllCardsObservableFromJsonServer(title)),
-      map((card) => card[0])
+function comboBoxValue() {
+  var comboBox = document.getElementsByClassName("comboBoxInput");
+  return (<HTMLInputElement>comboBox[0]).value;
+}
+
+function keyboardValue() {
+  var inputBox = document.getElementsByClassName("searchInput");
+  return (<HTMLInputElement>inputBox[0]).value;
+}
+
+const comboBoxObservable = new Observable((comboBox) => {
+  setInterval(() => {
+    comboBox.next(comboBoxValue());
+  }, 500);
+});
+
+const keyboardInpuObservable = new Observable((input) => {
+  setInterval(() => {
+    input.next(keyboardValue());
+  }, 500);
+});
+
+combineLatest([comboBoxObservable, keyboardInpuObservable])
+  .pipe(
+    switchMap((card) =>
+      getAllCardsObservableFromJsonServer(<string>card[1], <string>card[0])
     )
-    .subscribe((x) => {
-      cardGetSubscription.unsubscribe;
-      clearCardDiv();
-      if (x !== undefined) {
-        addItem(x);
-      } else {
-        alert("Card not found");
+  )
+  .subscribe((x) => {
+    if (x[0] !== undefined) {
+      if (x[0].title !== "") {
+        clearCardDiv();
+        x.forEach((el) => {
+          addItem(el);
+        });
       }
-    });
-}
-function searchButtonPressed() {
-  (<HTMLButtonElement>(
-    document.getElementsByClassName("searchButton")[0]
-  )).onclick = () => {};
-}
+    }
+  });

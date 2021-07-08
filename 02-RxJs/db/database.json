@@ -31,34 +31,34 @@
       "effect": ["attack"]
     },
     {
-        "id": 4,
-        "title": "Red-Eyes Black Dragon",
-        "stars": 7,
-        "description": "Its attack power is of the highest level possible. An extremely rare card!",
-        "attack": 2400,
-        "deffense": 2000,
-        "imgPath": "./resorces/RedEyesBlackDragon.png",
-        "effect": ["attack"]
-      },
-      {
-        "id": 5,
-        "title": "Summoned Skull",
-        "stars": 6,
-        "description": "A fiend with dark powers for confusing the enemy. Among the Fiend-Type monsters, this monster boasts considerable force.",
-        "attack": 2500,
-        "deffense": 1200,
-        "imgPath": "./resorces/SummonedSkull.jpg",
-        "effect": ["attack"]
-      },
-      {
-        "id": 6,
-        "title": "Curse of Dragon",
-        "stars": 5,
-        "description": "A wicked dragon that taps into dark forces to execute a powerful attack.",
-        "attack": 2000,
-        "deffense": 1500,
-        "imgPath": "./resorces/CurseofDragon.png",
-        "effect": ["attack"]
-      }
+      "id": 4,
+      "title": "Red-Eyes Black Dragon",
+      "stars": 7,
+      "description": "Its attack power is of the highest level possible. An extremely rare card!",
+      "attack": 2400,
+      "deffense": 2000,
+      "imgPath": "./resorces/RedEyesBlackDragon.png",
+      "effect": ["attack"]
+    },
+    {
+      "id": 5,
+      "title": "Summoned Skull",
+      "stars": 6,
+      "description": "A fiend with dark powers for confusing the enemy. Among the Fiend-Type monsters, this monster boasts considerable force.",
+      "attack": 2500,
+      "deffense": 1200,
+      "imgPath": "./resorces/SummonedSkull.jpg",
+      "effect": ["attack"]
+    },
+    {
+      "id": 6,
+      "title": "Curse of Dragon",
+      "stars": 5,
+      "description": "A wicked dragon that taps into dark forces to execute a powerful attack.",
+      "attack": 2000,
+      "deffense": 1500,
+      "imgPath": "./resorces/CurseofDragon.png",
+      "effect": ["attack"]
+    }
   ]
 }
