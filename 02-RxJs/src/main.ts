@@ -19,92 +19,12 @@ import {
   throttleTime,
 } from "rxjs/operators";
 import { Card } from "./models/card";
+import { cardCollectionController } from "./models/cardCollection";
+import { cardCollectionUI } from "./UI/cardCollectionUI";
 
-const API_URL = "http://localhost:3000/";
 
-function addItem(card: Card) {
-  let cardDiv = document.createElement("div");
-  document.getElementById("output").appendChild(cardDiv);
-  cardDiv.className = "cardUiStyle";
-  cardDiv.id = "test";
-
-  let cardIMG = document.createElement("img");
-  cardIMG.src = card.imgPath;
-  cardIMG.className = "cardUiImg";
-  cardDiv.appendChild(cardIMG);
-
-  let cardInfoDiv = document.createElement("div");
-  cardInfoDiv.className = "cardInfoDiv";
-  cardDiv.appendChild(cardInfoDiv);
-
-  let labelName = document.createElement("label");
-  labelName.innerHTML = "Name: " + card.title;
-  cardInfoDiv.appendChild(labelName);
-
-  let labelLvl = document.createElement("label");
-  labelLvl.innerHTML = "Level: " + card.stars;
-  cardInfoDiv.appendChild(labelLvl);
-
-  let labelDesc = document.createElement("label");
-  labelDesc.innerHTML = "Attribute: " + card.attribute;
-  cardInfoDiv.appendChild(labelDesc);
-
-  let labelAttackDeffens = document.createElement("label");
-  labelAttackDeffens.innerHTML = `ATK: ${card.attack} DEF: ${card.deffense}`;
-  cardInfoDiv.appendChild(labelAttackDeffens);
-}
-
-function showDetailedCardView(card: Card)
-{
-  console.log(card)
-  let detailCardDiv = document.createElement("img");
-  detailCardDiv.src = card.imgPath;
-  document.getElementById("cardDetail").appendChild(detailCardDiv);
-}
-
-function getAllCardsObservableFromJsonServer(
-  searched: string,
-  type: string
-): Observable<Card[]> {
-  type = type.toLowerCase();
-  if (searched === "") {
-    var fetchApi = fetch(API_URL + "cards");
-  } //?title=Celtic%20Guardian
-  else {
-    var fetchApi = fetch(API_URL + "cards" + `?${type}=` + searched);
-  }
-  var fetchVar = fetchApi
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Cards not found");
-      } else {
-        return response.json();
-      }
-    })
-    .catch((err) => console.log(`Error `, err));
-  return from(fetchVar);
-}
-
-const cardGetSubscription = getAllCardsObservableFromJsonServer(
-  "",
-  ""
-).subscribe((x) => {
-  x.forEach((el, index) => {
-    addItem(el);
-  });
-});
-
-function clearCardDiv() {
-  document.getElementById("output").innerHTML = "";
-}
-
-const keyboadInputObservable = fromEvent(
-  document.getElementsByClassName("searchInput"),
-  "input"
-).pipe(
-  debounceTime(1000),
-  map((ev: InputEvent) => (<HTMLInputElement>ev.target).value)
-);
+const cardCollection = new cardCollectionUI();
+cardCollection.drawList();
 
 function comboBoxValue() {
   var comboBox = document.getElementsByClassName("comboBoxInput");
@@ -119,28 +39,129 @@ function keyboardValue() {
 const comboBoxObservable = new Observable((comboBox) => {
   setInterval(() => {
     comboBox.next(comboBoxValue());
-  }, 500);
+  }, 1000);
 });
 
 const keyboardInpuObservable = new Observable((input) => {
   setInterval(() => {
     input.next(keyboardValue());
-  }, 500);
+  }, 1000);
 });
 
-combineLatest([comboBoxObservable, keyboardInpuObservable])
-  .pipe(
-    switchMap((card) =>
-      getAllCardsObservableFromJsonServer(<string>card[1], <string>card[0])
-    )
-  )
-  .subscribe((x) => {
-    if (x[0] !== undefined) {
-      if (x[0].title !== "") {
-        clearCardDiv();
-        x.forEach((el) => {
-          addItem(el);
-        });
-      }
-    }
-  });
+cardCollection.search(comboBoxObservable, keyboardInpuObservable);
+
+(<HTMLButtonElement>document.getElementsByClassName("forceLoadDbmsButton")[0]).onclick = () => {
+  cardCollection.cardCollection.loadDbmsCard();
+  cardCollection.drawList();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function addItem(card: Card) {
+//   let cardDiv = document.createElement("div");
+//   document.getElementById("output").appendChild(cardDiv);
+//   cardDiv.className = "cardUiStyle";
+//   cardDiv.id = "test";
+
+//   let cardIMG = document.createElement("img");
+//   cardIMG.src = card.imgPath;
+//   cardIMG.className = "cardUiImg";
+//   cardDiv.appendChild(cardIMG);
+
+//   let cardInfoDiv = document.createElement("div");
+//   cardInfoDiv.className = "cardInfoDiv";
+//   cardDiv.appendChild(cardInfoDiv);
+
+//   let labelName = document.createElement("label");
+//   labelName.innerHTML = "Name: " + card.title;
+//   cardInfoDiv.appendChild(labelName);
+
+//   let labelLvl = document.createElement("label");
+//   labelLvl.innerHTML = "Level: " + card.stars;
+//   cardInfoDiv.appendChild(labelLvl);
+
+//   let labelDesc = document.createElement("label");
+//   labelDesc.innerHTML = "Attribute: " + card.attribute;
+//   cardInfoDiv.appendChild(labelDesc);
+
+//   let labelAttackDeffens = document.createElement("label");
+//   labelAttackDeffens.innerHTML = `ATK: ${card.attack} DEF: ${card.deffense}`;
+//   cardInfoDiv.appendChild(labelAttackDeffens);
+
+//   cardDiv.onclick = () => {
+//     divClicked(card);
+//   }
+// }
+
+
+// function divClicked(card: Card)
+// {
+//   document.getElementById("cardDetail").innerHTML = "";
+
+//   let cardDetailDiv = document.createElement("div");
+//   cardDetailDiv.className = "cardDetailDiv";
+//   document.getElementById("cardDetail").appendChild(cardDetailDiv);
+
+//   let cardDetailImage = document.createElement("img")
+//   cardDetailImage.src = card.imgPath;
+//   cardDetailDiv.appendChild(cardDetailImage);
+// }
+
+// function showDetailedCardView(card: Card)
+// {
+//   console.log(card)
+//   let detailCardDiv = document.createElement("img");
+//   detailCardDiv.src = card.imgPath;
+//   document.getElementById("cardDetail").appendChild(detailCardDiv);
+// }
+
+// function getAllCardsObservableFromJsonServer(
+//   searched: string,
+//   type: string
+// ): Observable<Card[]> {
+//   type = type.toLowerCase();
+//   if (searched === "") {
+//     var fetchApi = fetch(API_URL + "cards");
+//   } //?title=Celtic%20Guardian
+//   else {
+//     var fetchApi = fetch(API_URL + "cards" + `?${type}=` + searched);
+//   }
+//   var fetchVar = fetchApi
+//     .then((response) => {
+//       if (!response.ok) {
+//         throw new Error("Cards not found");
+//       } else {
+//         return response.json();
+//       }
+//     })
+//     .catch((err) => console.log(`Error `, err));
+//   return from(fetchVar);
+// }
+
+// const cardGetSubscription = getAllCardsObservableFromJsonServer(
+//   "",
+//   ""
+// ).subscribe((x) => {
+//   x.forEach((el, index) => {
+//     addItem(el);
+//   });
+// });
+
+// function clearCardDiv() {
+//   document.getElementById("output").innerHTML = "";
+// }
+
+

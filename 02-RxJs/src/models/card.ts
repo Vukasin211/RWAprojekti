@@ -4,12 +4,15 @@ export class Card {
   stars: string;
   attribute: string;
   description: string;
-  attack: number;
-  deffense: number;
+  attack: string;
+  deffense: string;
   imgPath: string;
   type: string[];
   
-  addCardToDatabase(){
+  constructor()
+  {
 
   }
+
+
 }
