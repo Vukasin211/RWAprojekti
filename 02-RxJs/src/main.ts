@@ -22,10 +22,6 @@ import { Card } from "./models/card";
 import { cardCollectionController } from "./models/cardCollection";
 import { cardCollectionUI } from "./UI/cardCollectionUI";
 
-
-const cardCollection = new cardCollectionUI();
-cardCollection.drawList();
-
 function comboBoxValue() {
   var comboBox = document.getElementsByClassName("comboBoxInput");
   return (<HTMLInputElement>comboBox[0]).value;
@@ -48,12 +44,23 @@ const keyboardInpuObservable = new Observable((input) => {
   }, 1000);
 });
 
-cardCollection.search(comboBoxObservable, keyboardInpuObservable);
+
+
+const cardCollection = new cardCollectionUI();
+cardCollection.drawList();
+
+
+
+// cardCollection.search(comboBoxObservable, keyboardInpuObservable);
 
 (<HTMLButtonElement>document.getElementsByClassName("forceLoadDbmsButton")[0]).onclick = () => {
   cardCollection.cardCollection.loadDbmsCard();
   cardCollection.drawList();
 }
+
+ (<HTMLButtonElement>document.getElementsByClassName("sortCards")[0]).onclick = () => {
+   alert("Not implemented for now");
+ }
 
 
 

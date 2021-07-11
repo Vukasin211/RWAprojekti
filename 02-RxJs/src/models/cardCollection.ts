@@ -72,15 +72,92 @@ export class cardCollectionController {
 
 
   search(searchedValue: string, category: string) {
-    //   searchedValue = searchedValue.toString();
-    //   console.log(searchedValue);
+    if(searchedValue !== "")
     return from( this.cardCollectionObservable.pipe(
         map(cards => cards.filter(card => this.checkCardAttributeForSearch(card, category) == searchedValue))
     ))
-    // this.cardCollectionObservable
-    // .pipe(
-    //  map(cards => cards.filter(card => this.checkCardAttributeForSearch(card, category) == searchedValue))
-    // );
+    else
+    {
+      return this.cardCollectionObservable
+    }
+  }
+
+  sort()
+  {
+    return from(this.cardCollectionObservable.pipe(
+      map(cards => this.randomOrderSorter(cards))
+    ))
+  }
+
+  randomOrderPromiseGenerator(length: number)
+  {
+    return new Promise<number[]>((resolve, reject) => {
+      let randomElementOrder = []
+      let count = 0;
+      let temp = 0;
+      let exists = false;
+      let random = 0;
+      while(count !== length)
+      {
+        exists = false;
+        random = Math.round(Math.random() * length);
+        if(count === 0)
+        {
+          randomElementOrder.push(random);
+          count++; 
+        }
+        else
+        {
+          randomElementOrder.forEach((el, inedx) => {
+            if(random === el)
+            {
+              exists = true;
+            }
+          })
+          if(exists === false)
+          {
+            randomElementOrder.push(random);
+            count++;
+          }
+        }
+      }
+      //console.log(randomElementOrder);
+      resolve(randomElementOrder);
+    })
+  }
+
+  async randomOrderSorter(cards: Card[]): Promise<Card[]>
+  {
+    let array = await this.randomOrderPromiseGenerator(cards.length - 1);
+    let tempCards: Card[] = [];
+    
+    array.forEach((el, index) => {
+      tempCards.push(cards[el]);
+    })
+    return tempCards;
   }
 
 }
+
+function comboBoxValue() {
+  var comboBox = document.getElementsByClassName("comboBoxInput");
+  return (<HTMLInputElement>comboBox[0]).value;
+}
+
+function keyboardValue() {
+  var inputBox = document.getElementsByClassName("searchInput");
+  return (<HTMLInputElement>inputBox[0]).value;
+}
+
+const comboBoxObservable = new Observable((comboBox) => {
+  setInterval(() => {
+    comboBox.next(comboBoxValue());
+  }, 1000);
+});
+
+const keyboardInpuObservable = new Observable((input) => {
+  setInterval(() => {
+    input.next(keyboardValue());
+  }, 1000);
+});
+

@@ -1,4 +1,17 @@
+body{
+  background-color: gray;
+}
 
+.mainSingleCardDiv
+{
+  margin: 10px;
+  border: 2px solid black;
+
+  background-color: orange;
+  display: flex;
+  border-radius: 20px;
+  padding: 10px;
+}
 .cardUiStyle {
   margin: 10px;
   border: 2px solid black;
@@ -38,6 +51,10 @@
 
     width: 400px;
 }
+.cardDeleteButton
+{
+  border-radius: 20px;
+}
 
 .search
 {
@@ -50,4 +67,19 @@
 {
   display: flex;
   flex-direction: row;
+}
+
+#cardDetail{
+  width: 100%;
+  height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardDetailDiv{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
