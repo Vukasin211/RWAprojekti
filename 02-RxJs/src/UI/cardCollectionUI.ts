@@ -1,82 +1,47 @@
-import { combineLatest, from, fromEvent, Observable, zip } from "rxjs";
+import { combineLatest, from, fromEvent, Observable, Subscription, zip } from "rxjs";
 import { debounceTime, filter, map, switchMap } from "rxjs/operators";
 import { Card } from "../models/card";
 import { cardCollectionController } from "../models/cardCollection";
 
 export class cardCollectionUI {
-    public cardCollection: cardCollectionController;
+  public cardCollection: cardCollectionController;
+  public testSubscription: Subscription;
   public testCards: Card[];
+
   constructor() {
     this.testCards = [];
     this.cardCollection = new cardCollectionController();
-
   }
 
   drawList() {
-      document.getElementById("cardDetail").innerHTML = "";
+    document.getElementById("cardDetail").innerHTML = "";
     document.getElementById("output").innerHTML = "";
-    this.cardCollection.cardCollectionObservable.pipe(
-      switchMap((cards) => this.search()),
-      //map(async (cards) => await this.testSort(cards))
-
-    ).subscribe((cards) => {
-
-
-      // //Test za random sortiranje nisam provalio kako funkcionise
-      // cards.then((cards1) =>{
-      //   if (cards1[0] !== undefined) {
-      //     if (cards1[0].title !== "") {
-      //       clearCardDiv();
-      //       cards1.forEach((el: Card) => {
-      //         this.addItem(el);
-      //       });
-      //       // this.randomOrderSorter(cards);
-      //       // console.log(cards)
-      //     }
-      //   }
-      // })
-      
-      if (cards[0] !== undefined) {
-        if (cards[0].title !== "") {
-          clearCardDiv();
-          cards.forEach((el: Card) => {
-            this.addItem(el);
-          });
-        }
-      }
-    });
-  }
-
-  testSort(cards: Card[])
-  {
-    this.testSortButton(cards);
-    return this.cardCollection.randomOrderSorter(cards)//this.cardCollection.randomOrderSorter(cards)
-
-  }
-
-  testSortButton(cards: Card[])
-  {
-    zip(sortButton(), this.cardCollection.randomOrderSorter(cards)).pipe(
-      switchMap((newCards) => this.cardCollection.randomOrderSorter(cards))
-    ).subscribe((newCards) => {
-      this.testCards = newCards
-      console.log(this.testCards);
-    })
-    return this.testCards
-  }
-
-  search() {
-    return  combineLatest([comboBoxObservable, keyboardInpuObservable])
-    .pipe(
-      switchMap(
-        (card) => this.cardCollection.search(<string>card[1], <string>card[0])
+    this.testSubscription = this.cardCollection.cardCollectionObservable
+      .pipe(
+        switchMap((cards) => this.cardCollection.searchObservable()),
+        //switchMap((cards) => this.testSortButton(cards)),
       )
-    )
+      .subscribe((cards) => {
+        console.log("subscribe")
+        if (cards[0] !== undefined) {
+          if (cards[0].title !== "") {
+            clearCardDiv();
+            cards.forEach((el: Card) => {
+              this.addItem(el);
+            });
+          }
+        }
+      });
   }
-  
+
+  testSortButton(cards: Card[]) {
+      return zip(sortButtonPress(), this.cardCollection.getCardCollectionStream())
+      .pipe(
+        map((newCards) => this.cardCollection.radnomOrderSorterTest(cards)),
+      )
+  }
 
   addItem(card: Card) {
-    
     let mainCardDiv = document.createElement("div");
     mainCardDiv.className = "mainSingleCardDiv";
     document.getElementById("output").appendChild(mainCardDiv);
@@ -129,7 +94,7 @@ export class cardCollectionUI {
   }
 
   divClicked(card: Card) {
-    console.log(card.title + " clicked")
+    console.log(card.title + " clicked");
     document.getElementById("cardDetail").innerHTML = "";
 
     let cardDetailDiv = document.createElement("div");
@@ -147,12 +112,9 @@ export class cardCollectionUI {
     this.drawList();
   }
 
-
   clearCardListDiv() {
     document.getElementById("output").innerHTML = "";
   }
-
-
 }
 
 function clearCardDiv() {
@@ -164,10 +126,7 @@ function comboBoxValue() {
   return (<HTMLInputElement>comboBox[0]).value;
 }
 
-function sortButton() {
-  var sortButton = document.getElementsByClassName("sortCards")[0]
-  return fromEvent(sortButton, 'click')
-}
+
 
 function keyboardValue() {
   var inputBox = document.getElementsByClassName("searchInput");
@@ -185,3 +144,15 @@ const keyboardInpuObservable = new Observable((input) => {
     input.next(keyboardValue());
   }, 1000);
 });
+
+function sortButtonPress() {
+  var sortButton = document.getElementsByClassName("sortCards")[0];
+  return fromEvent(document.getElementsByClassName("sortCards")[0], 'click');
+}
+
+
+const sortButtonObservable = new Observable((sortButton) => {
+  setInterval(() => {
+    sortButton.next(sortButtonPress());
+  }, 1000)
+})

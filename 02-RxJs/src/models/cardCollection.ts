@@ -1,4 +1,4 @@
-import { combineLatest, from, fromEvent, Observable } from "rxjs";
+import { combineLatest, from, fromEvent, interval, Observable } from "rxjs";
 import { debounceTime, filter, map, switchMap } from "rxjs/operators";
 import { Card } from "./card";
 
@@ -6,9 +6,11 @@ const API_URL = "http://localhost:3000/";
 
 export class cardCollectionController {
   public cardCollectionObservable: Observable<Card[]>;
+  public randomCardOrder: number[]
 
   constructor() {
     this.loadDbmsCard();
+    this.randomCardOrder = [];
   }
 
   loadDbmsCard() {
@@ -16,6 +18,9 @@ export class cardCollectionController {
       "",
       ""
     );
+    this.cardCollectionObservable.subscribe((cards) => {
+      this.randomOrderSorter(cards);
+    })
   }
 
   getAllCardsObservableFromJsonServer(
@@ -49,73 +54,82 @@ export class cardCollectionController {
     );
   }
 
-  checkCardAttributeForSearch(card: Card, category: string){
-      category = category.toLowerCase();
+  checkCardAttributeForSearch(card: Card, category: string) {
+    category = category.toLowerCase();
 
-    if(category === "attack")
-    {
-        return card.attack
-    }
-    else if (category === "deffense")
-    {
-        return card.deffense
-    }
-    else if(category === "title")
-    {
-        return card.title
-    }
-    else 
-    {
-        return card.stars
+    if (category === "attack") {
+      return card.attack;
+    } else if (category === "deffense") {
+      return card.deffense;
+    } else if (category === "title") {
+      return card.title;
+    } else {
+      return card.stars;
     }
   }
-
 
   search(searchedValue: string, category: string) {
-    if(searchedValue !== "")
-    return from( this.cardCollectionObservable.pipe(
-        map(cards => cards.filter(card => this.checkCardAttributeForSearch(card, category) == searchedValue))
-    ))
-    else
-    {
-      return this.cardCollectionObservable
+    if (searchedValue !== "")
+      return from(
+        this.cardCollectionObservable.pipe(
+          map((cards) =>
+            cards.filter(
+              (card) =>
+                this.checkCardAttributeForSearch(card, category) ==
+                searchedValue
+            )
+          )
+        )
+      );
+    else {
+      return this.cardCollectionObservable;
     }
   }
-
-  sort()
-  {
-    return from(this.cardCollectionObservable.pipe(
-      map(cards => this.randomOrderSorter(cards))
-    ))
+  searchObservable() {
+    return combineLatest([comboBoxObservable, keyboardInpuObservable]).pipe(
+      switchMap((card) =>
+        this.search(<string>card[1], <string>card[0])
+      )
+    );
   }
 
-  randomOrderPromiseGenerator(length: number)
+  getCardCollectionStream()
   {
+    console.log("cardCollectionStream");
+    return interval(500).pipe(
+      map((emit) => this.cardCollectionObservable)
+    )
+  }
+
+  sort() {
+    return from(
+      this.cardCollectionObservable.pipe(
+        map((cards) => this.randomOrderSorter(cards))
+      )
+    );
+  }
+
+  randomOrderPromiseGenerator(length: number) {
+    console.log("generisan broj");
     return new Promise<number[]>((resolve, reject) => {
-      let randomElementOrder = []
+      let randomElementOrder = [];
       let count = 0;
       let temp = 0;
       let exists = false;
       let random = 0;
-      while(count !== length)
-      {
+      while (count !== length) {
         exists = false;
         random = Math.round(Math.random() * length);
-        if(count === 0)
-        {
+        if (count === 0) {
           randomElementOrder.push(random);
-          count++; 
-        }
-        else
-        {
+          count++;
+        } else {
           randomElementOrder.forEach((el, inedx) => {
-            if(random === el)
-            {
+            if (random === el) {
               exists = true;
             }
-          })
-          if(exists === false)
-          {
+          });
+          if (exists === false) {
             randomElementOrder.push(random);
             count++;
           }
@@ -123,21 +137,61 @@ export class cardCollectionController {
       }
       //console.log(randomElementOrder);
       resolve(randomElementOrder);
-    })
+    });
   }
 
-  async randomOrderSorter(cards: Card[]): Promise<Card[]>
+  radnomOrderSorterTest(cards: Card[])
   {
-    let array = await this.randomOrderPromiseGenerator(cards.length - 1);
     let tempCards: Card[] = [];
-    
-    array.forEach((el, index) => {
+
+    this.randomCardOrder.forEach((el, index) => {
       tempCards.push(cards[el]);
-    })
+    });
     return tempCards;
   }
 
+  async randomOrderSorter(cards: Card[]): Promise<any> {
+    this.randomCardOrder = await this.randomOrderPromiseGenerator(cards.length - 1);
+    //let tempCards: Card[] = [];
+
+    // array.forEach((el, index) => {
+    //   tempCards.push(cards[el]);
+    // });
+    // return tempCards;
+  }
 }
+
+
+function randomOrderPromiseGenerator(length: number) {
+    console.log("generisan broj");
+    return new Promise<number[]>((resolve, reject) => {
+      let randomElementOrder = [];
+      let count = 0;
+      let temp = 0;
+      let exists = false;
+      let random = 0;
+      while (count !== length) {
+        exists = false;
+        random = Math.round(Math.random() * length);
+        if (count === 0) {
+          randomElementOrder.push(random);
+          count++;
+        } else {
+          randomElementOrder.forEach((el, inedx) => {
+            if (random === el) {
+              exists = true;
+            }
+          });
+          if (exists === false) {
+            randomElementOrder.push(random);
+            count++;
+          }
+        }
+      }
+      //console.log(randomElementOrder);
+      resolve(randomElementOrder);
+    });
+  }
 
 function comboBoxValue() {
   var comboBox = document.getElementsByClassName("comboBoxInput");
@@ -160,4 +214,3 @@ const keyboardInpuObservable = new Observable((input) => {
     input.next(keyboardValue());
   }, 1000);
 });
-

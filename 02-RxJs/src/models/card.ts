@@ -8,11 +8,6 @@ export class Card {
   deffense: string;
   imgPath: string;
   type: string[];
-  
-  constructor()
-  {
 
-  }
-
-
+  constructor() {}
 }
